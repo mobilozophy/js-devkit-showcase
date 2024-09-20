@@ -55,7 +55,7 @@
           <div class="absolute left-1/2 transform -translate-x-1/2 w-40 h-8 bg-black rounded-2xl flex items-center justify-center">
             <!-- Dynamic Island -->
             <div class="w-28 h-6 bg-black rounded-lg flex items-center justify-center text-white text-xs">
-              Dynamic Island
+              Mobilozophy
             </div>
           </div>
           <div class="flex items-center space-x-2">

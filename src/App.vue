@@ -9,27 +9,35 @@
               <img class="hidden h-8 w-auto lg:block" src="@/assets/images/mobilozophy-logo.svg" alt="Mobilozophy" />
             </div>
             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[item.current ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</router-link>
+              <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[isCurrentRoute(item.href) ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" :aria-current="isCurrentRoute(item.href) ? 'page' : undefined">{{ item.name }}</router-link>
               
               <!-- Features Dropdown -->
-              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" @mouseenter="showFeaturesDropdown = true" @mouseleave="showFeaturesDropdown = false">
+              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium" :class="[isFeatureRoute() ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']" @mouseenter="showFeaturesDropdown = true" @mouseleave="showFeaturesDropdown = false">
                 <button class="inline-flex items-center">
                   Features
                   <ChevronDownIcon class="ml-1 h-5 w-5" aria-hidden="true" />
                 </button>
                 <div v-if="showFeaturesDropdown" class="absolute left-0 top-full mt-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-                  <router-link v-for="item in features" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ item.name }}</router-link>
+                  <router-link v-for="item in features" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <span :class="{ 'font-bold': isCurrentRoute(item.href) }">
+                      {{ isCurrentRoute(item.href) ? '• ' : '' }}{{ item.name }}
+                    </span>
+                  </router-link>
                 </div>
               </div>
               
               <!-- Use Cases Dropdown -->
-              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" @mouseenter="showUseCasesDropdown = true" @mouseleave="showUseCasesDropdown = false">
+              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium" :class="[isUseCaseRoute() ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']" @mouseenter="showUseCasesDropdown = true" @mouseleave="showUseCasesDropdown = false">
                 <button class="inline-flex items-center">
                   Use Cases
                   <ChevronDownIcon class="ml-1 h-5 w-5" aria-hidden="true" />
                 </button>
                 <div v-if="showUseCasesDropdown" class="absolute left-0 top-full mt-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-                  <router-link v-for="item in useCases" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ item.name }}</router-link>
+                  <router-link v-for="item in useCases" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <span :class="{ 'font-bold': isCurrentRoute(item.href) }">
+                      {{ isCurrentRoute(item.href) ? '• ' : '' }}{{ item.name }}
+                    </span>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -58,7 +66,7 @@
 
       <DisclosurePanel class="sm:hidden">
         <div class="space-y-1 pb-3 pt-2">
-          <DisclosureButton v-for="item in navigation" :key="item.name" as="router-link" :to="item.href" :class="[item.current ? 'border-primary bg-primary-light text-primary' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <DisclosureButton v-for="item in navigation" :key="item.name" as="router-link" :to="item.href" :class="[isCurrentRoute(item.href) ? 'border-primary bg-primary-light text-primary' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="isCurrentRoute(item.href) ? 'page' : undefined">{{ item.name }}</DisclosureButton>
           <DisclosureButton as="div" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
             <span class="flex items-center justify-between">
               Use Cases
@@ -132,10 +140,12 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 
 const store = useStore()
+const route = useRoute()
 
 const mobileMenuOpen = ref(false)
 const showUseCasesDropdown = ref(false)
@@ -146,9 +156,9 @@ const mzcapiConfig = computed(() => store.state.mzcapiConfig)
 const formConfig = computed(() => store.state.formConfig)
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Getting Started', href: '/getting-started', current: false },
-  { name: 'About', href: '/about', current: false },
+  { name: 'Home', href: '/' },
+  { name: 'Getting Started', href: '/getting-started' },
+  { name: 'About', href: '/about' },
 ]
 
 const features = [
@@ -161,8 +171,20 @@ const features = [
 ]
 
 const useCases = [
-  { name: 'Hospitality Demo', href: '/use-cases/hospitality', current: false },
+  { name: 'Hospitality Demo', href: '/use-cases/hospitality' },
 ]
+
+const isCurrentRoute = (href) => {
+  return route.path === href
+}
+
+const isFeatureRoute = () => {
+  return route.path.startsWith('/features')
+}
+
+const isUseCaseRoute = () => {
+  return route.path.startsWith('/use-cases')
+}
 
 const openModal = () => {
   isModalOpen.value = true
