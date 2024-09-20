@@ -1,4 +1,4 @@
-![Mobilozophy Logo](src/assets/images/mobilozophy-logo.svg)
+<img src="src/assets/images/mobilozophy-logo.svg" alt="Mobilozophy Logo" width="200" />
 
 # Mobilozophy Development License
 
