@@ -78,9 +78,9 @@
                 </div>
                 <nav class="flex-shrink-0 overflow-x-auto w-full">
                   <ul class="flex justify-center space-x-1">
-                    <li><a href="#rooms" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]" data-intro="Check out our luxurious rooms!"><HomeIcon class="w-2 h-2 mr-1" />Rooms</a></li>
-                    <li><a href="#amenities" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]" data-intro="Explore our amazing amenities!"><SparklesIcon class="w-2 h-2 mr-1" />Amenities</a></li>
-                    <li><a href="#contact" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]" data-intro="Get in touch with us!"><PhoneIcon class="w-2 h-2 mr-1" />Contact</a></li>
+                    <li><a href="#rooms" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]" data-intro="We can point out various features we have embedded in the page... Giving a tour of the what are use cases are..."><HomeIcon class="w-2 h-2 mr-1" />Rooms</a></li>
+                    <li><a href="#amenities" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]"><SparklesIcon class="w-2 h-2 mr-1" />Amenities</a></li>
+                    <li><a href="#contact" class="hover:text-[#d97706] transition duration-300 flex items-center text-[10px]"><PhoneIcon class="w-2 h-2 mr-1" />Contact</a></li>
                   </ul>
                 </nav>
               </div>
@@ -89,19 +89,19 @@
     
           <main>
             <!-- Hero Section -->
-            <section class="bg-cover bg-center min-h-[50vh] flex items-center" style="background-image: url('https://images.unsplash.com/photo-1587061949409-02df41d5e562?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');" data-intro="Welcome to Timberhaven Lodge!">
+            <section class="bg-cover bg-center min-h-[50vh] flex items-center" style="background-image: url('https://images.unsplash.com/photo-1587061949409-02df41d5e562?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
               <div class="container mx-auto px-4 text-center">
                 <h2 class="text-lg sm:text-xl md:text-2xl font-serif font-bold text-white mb-2 shadow-text">Welcome to Timberhaven Lodge</h2>
                 <p class="text-xs sm:text-sm text-white mb-4 shadow-text">Experience rustic luxury in the heart of nature</p>
                 <div class="flex flex-col space-y-2">
                   <a href="#rooms" class="bg-[#b45309] hover:bg-[#d97706] text-white font-bold py-1 px-3 rounded-md transition duration-300 flex items-center justify-center text-xs"><HomeIcon class="w-3 h-3 mr-1" />Explore Our Rooms</a>
-                  <button @click="joinLoyaltyProgram" class="bg-[#047857] hover:bg-[#064e3b] text-white font-bold py-1 px-3 rounded-md transition duration-300 flex items-center justify-center text-xs" data-intro="Join our loyalty program for exclusive benefits!"><UserGroupIcon class="w-3 h-3 mr-1" />Join Our Loyalty Program</button>
+                  <button @click="joinLoyaltyProgram" class="bg-[#047857] hover:bg-[#064e3b] text-white font-bold py-1 px-3 rounded-md transition duration-300 flex items-center justify-center text-xs"><UserGroupIcon class="w-3 h-3 mr-1" />Join Our Loyalty Program</button>
                 </div>
               </div>
             </section>
     
             <!-- Rooms Section -->
-            <section id="rooms" class="py-8 bg-white" data-intro="Here are our luxurious rooms.">
+            <section id="rooms" class="py-8 bg-white">
               <div class="container mx-auto px-4">
                 <h2 class="text-base sm:text-lg font-serif font-bold text-[#064e3b] mb-4 text-center">Our Luxurious Accommodations</h2>
                 <div :class="{'grid gap-4 grid-cols-1': isMobileView, 'grid gap-4 grid-cols-2': !isMobileView}">
@@ -123,7 +123,7 @@
             </section>
     
             <!-- Amenities Section -->
-            <section id="amenities" class="py-8 bg-[#e5e7eb]" data-intro="Discover our top-notch amenities.">
+            <section id="amenities" class="py-8 bg-[#e5e7eb]">
               <div class="container mx-auto px-4">
                 <h2 class="text-base sm:text-lg font-serif font-bold text-[#064e3b] mb-4 text-center">Lodge Amenities</h2>
                 <div :class="{'grid gap-4 grid-cols-1': isMobileView, 'grid gap-4 grid-cols-3': !isMobileView}">
@@ -144,7 +144,7 @@
             </section>
     
             <!-- Contact Section -->
-            <section id="contact" class="py-8 bg-[#064e3b] text-white" data-intro="Feel free to contact us anytime.">
+            <section id="contact" class="py-8 bg-[#064e3b] text-white">
               <div class="container mx-auto px-4">
                 <h2 class="text-base sm:text-lg font-serif font-bold mb-4 text-center">Contact Us</h2>
                 <div :class="{'grid gap-4 grid-cols-1': isMobileView, 'grid gap-4 grid-cols-2': !isMobileView}">
