@@ -1,0 +1,204 @@
+<template>
+  <div class="min-h-full">
+    <Disclosure as="nav" class="border-b border-gray-200 bg-white" v-slot="{ open }">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 justify-between">
+          <div class="flex">
+            <div class="flex flex-shrink-0 items-center">
+              <img class="block h-8 w-auto lg:hidden" src="@/assets/images/mobilozophy-logo.svg" alt="Mobilozophy" />
+              <img class="hidden h-8 w-auto lg:block" src="@/assets/images/mobilozophy-logo.svg" alt="Mobilozophy" />
+            </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+              <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</router-link>
+              
+              <!-- Features Dropdown -->
+              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" @mouseenter="showFeaturesDropdown = true" @mouseleave="showFeaturesDropdown = false">
+                <button class="inline-flex items-center">
+                  Features
+                  <ChevronDownIcon class="ml-1 h-5 w-5" aria-hidden="true" />
+                </button>
+                <div v-if="showFeaturesDropdown" class="absolute left-0 top-full mt-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                  <router-link v-for="item in features" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ item.name }}</router-link>
+                </div>
+              </div>
+              
+              <!-- Use Cases Dropdown -->
+              <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" @mouseenter="showUseCasesDropdown = true" @mouseleave="showUseCasesDropdown = false">
+                <button class="inline-flex items-center">
+                  Use Cases
+                  <ChevronDownIcon class="ml-1 h-5 w-5" aria-hidden="true" />
+                </button>
+                <div v-if="showUseCasesDropdown" class="absolute left-0 top-full mt-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                  <router-link v-for="item in useCases" :key="item.name" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ item.name }}</router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <router-link to="/getting-started" class="text-sm font-medium text-gray-500 hover:text-gray-700">Getting Started</router-link>
+            <button @click="openModal" class="text-sm font-medium text-gray-500 hover:text-gray-700">Settings</button>
+            <div class="-mr-2 flex items-center sm:hidden">
+              <!-- Mobile menu button -->
+              <DisclosureButton class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <span class="absolute -inset-0.5" />
+                <span class="sr-only">Open main menu</span>
+                <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+                <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
+              </DisclosureButton>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <DisclosurePanel class="sm:hidden">
+        <div class="space-y-1 pb-3 pt-2">
+          <DisclosureButton v-for="item in navigation" :key="item.name" as="router-link" :to="item.href" :class="[item.current ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <DisclosureButton as="div" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+            <span class="flex items-center justify-between">
+              Use Cases
+              <ChevronDownIcon class="ml-1 h-5 w-5" aria-hidden="true" />
+            </span>
+            <div class="mt-2 space-y-1">
+              <DisclosureButton v-for="item in useCases" :key="item.name" as="router-link" :to="item.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ item.name }}</DisclosureButton>
+            </div>
+          </DisclosureButton>
+        </div>
+      </DisclosurePanel>
+    </Disclosure>
+
+    <div class="py-10">
+      <main>
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <slot name="before-content"></slot>
+          <router-view></router-view>
+          <slot name="after-content"></slot>
+        </div>
+      </main>
+    </div>
+
+    <footer class="mt-16 text-white bg-gray-800 fixed bottom-0 w-full">
+      <div class="container px-4 py-8 mx-auto">
+        <p class="text-center">&copy; {{ currentYear }} Mobilozophy, LLC. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <transition name="modal">
+      <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+          <h2 class="text-xl font-bold mb-4">Settings</h2>
+          <form @submit.prevent="saveSettings">
+            <div class="mb-4">
+              <label for="domain" class="block text-sm font-medium text-gray-700">Domain</label>
+              <input v-model="mzcapiConfig.domain" type="text" id="domain" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+            </div>
+            <div class="mb-4">
+              <label for="api_url" class="block text-sm font-medium text-gray-700">API URL</label>
+              <input v-model="mzcapiConfig.api_url" type="text" id="api_url" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+            </div>
+            <div class="mb-4">
+              <label for="verboseLogging" class="block text-sm font-medium text-gray-700">Verbose Logging</label>
+              <input v-model="mzcapiConfig.verboseLogging" type="checkbox" id="verboseLogging" class="mt-1 block" />
+            </div>
+            <div class="mb-4">
+              <label for="account_uuid" class="block text-sm font-medium text-gray-700">Account UUID</label>
+              <input v-model="formConfig.account_uuid" type="text" id="account_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+            </div>
+            <div class="mb-4">
+              <label for="form_uuid" class="block text-sm font-medium text-gray-700">Form UUID</label>
+              <input v-model="formConfig.form_uuid" type="text" id="form_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+            </div>
+            <div class="mb-4">
+              <label for="form_style" class="block text-sm font-medium text-gray-700">Form Style</label>
+              <input v-model="formConfig.form_style" type="text" id="form_style" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+            </div>
+            <div class="flex justify-end">
+              <button type="button" @click="closeModal" class="mr-2 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
+              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, computed, watch } from 'vue'
+import { useStore } from 'vuex'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+
+const store = useStore()
+
+const mobileMenuOpen = ref(false)
+const showUseCasesDropdown = ref(false)
+const showFeaturesDropdown = ref(false)
+const isModalOpen = ref(false)
+
+const mzcapiConfig = computed(() => store.state.mzcapiConfig)
+const formConfig = computed(() => store.state.formConfig)
+
+const navigation = [
+  { name: 'Home', href: '/', current: true },
+  { name: 'Getting Started', href: '/getting-started', current: false },
+  { name: 'About', href: '/about', current: false },
+]
+
+const features = [
+  { name: 'Forms', href: '/features/forms' },
+  { name: 'SMS Opt-In', href: '/features/sms-opt-in' },
+  { name: 'Coupons', href: '/features/coupons' },
+  { name: 'Loyalty', href: '/features/loyalty' },
+  { name: 'Analytics', href: '/features/analytics' },
+  { name: 'Events', href: '/features/events' },
+]
+
+const useCases = [
+  { name: 'Hospitality Demo', href: '/use-cases/hospitality', current: false },
+]
+
+const openModal = () => {
+  isModalOpen.value = true
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+}
+
+const saveSettings = () => {
+  store.dispatch('updateMzcapiConfig', mzcapiConfig.value)
+  store.dispatch('updateFormConfig', formConfig.value)
+  closeModal()
+}
+
+const initializeMobilozophy = () => {
+  window.mzcapiConfig = {
+    domain: mzcapiConfig.value.domain,
+    api_url: mzcapiConfig.value.api_url,
+    verboseLogging: mzcapiConfig.value.verboseLogging
+  }
+
+  const script = document.createElement('script')
+  script.src = 'https://mzcapi.test/dev-js-embed/dist/embed.js'
+  
+  document.head.appendChild(script)
+}
+
+onMounted(() => {
+  store.dispatch('initializeStore').then(() => {
+    initializeMobilozophy()
+  })
+})
+
+// Watch for changes in mzcapiConfig and reinitialize if necessary
+watch(mzcapiConfig, (newConfig, oldConfig) => {
+  if (JSON.stringify(newConfig) !== JSON.stringify(oldConfig)) {
+    initializeMobilozophy()
+  }
+}, { deep: true })
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+</style>
