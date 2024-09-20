@@ -1,13 +1,13 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4 text-primary">Forms Integration</h1>
+  <div class="container px-4 py-8 mx-auto">
+    <h1 class="mb-4 text-4xl font-bold text-primary">Forms Integration</h1>
     <p class="mb-8 text-base">
       Welcome to Mobilozophy's Forms Integration guide. This powerful feature goes beyond simple data collection. Our forms are designed to create meaningful interactions, providing valuable insights that seamlessly integrate with our customer data platform (CDP). By using our forms, you're not just gathering information; you're building a comprehensive understanding of your audience, enabling more personalized and effective engagement strategies.
     </p>
 
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Why Choose Mobilozophy Forms?</h2>
-      <ul class="list-disc list-inside mb-4 text-base">
+      <ul class="mb-4 text-base list-disc list-inside">
         <li>Seamless integration with our CDP for a holistic view of customer interactions</li>
         <li>Enhanced user experience through personalized, context-aware forms</li>
         <li>Deeper insights into user behavior and preferences</li>
@@ -18,7 +18,7 @@
 
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">What You'll Need</h2>
-      <ul class="list-disc list-inside mb-4 text-base">
+      <ul class="mb-4 text-base list-disc list-inside">
         <li>Basic HTML and CSS knowledge</li>
         <li>Familiarity with JavaScript (for advanced customization)</li>
         <li>Access to your website's codebase</li>
@@ -29,20 +29,20 @@
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Basic Form Integration</h2>
       <p class="mb-4 text-base">To integrate a form into your website and start gathering valuable insights, simply add the following HTML code to your desired page:</p>
-      <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto">
+      <div class="overflow-x-auto p-4 bg-gray-800 rounded-lg">
         <pre class="text-sm text-gray-300"><code><span class="text-pink-400">&lt;div</span> <span class="text-blue-300">class</span>=<span class="text-orange-300">"mzcapi-form"</span> 
      <span class="text-blue-300">data-mz-account</span>=<span class="text-orange-300">"your_account_uuid"</span> 
      <span class="text-blue-300">data-mz-form</span>=<span class="text-orange-300">"your_form_uuid"</span>
      <span class="text-blue-300">data-mz-form-style</span>=<span class="text-orange-300">"default"</span><span class="text-pink-400">&gt;&lt;/div&gt;</span></code></pre>
       </div>
-      <p class="mt-4 text-base">Replace <code class="bg-gray-200 px-1 py-0.5 rounded text-red-600 font-mono">your_account_uuid</code> and <code class="bg-gray-200 px-1 py-0.5 rounded text-red-600 font-mono">your_form_uuid</code> with your actual account and form UUIDs. You can find these in your Mobilozophy dashboard.</p>
-      <p class="mt-4 text-base">The <code class="bg-gray-200 px-1 py-0.5 rounded text-red-600 font-mono">data-mz-form-style</code> attribute is set to "default" for now. In future releases, we may provide additional styling options or templates for forms. If you remove this attribute, you can apply custom styles to the form.</p>
+      <p class="mt-4 text-base">Replace <code class="px-1 py-0.5 font-mono text-red-600 bg-gray-200 rounded">your_account_uuid</code> and <code class="px-1 py-0.5 font-mono text-red-600 bg-gray-200 rounded">your_form_uuid</code> with your actual account and form UUIDs. You can find these in your Mobilozophy dashboard.</p>
+      <p class="mt-4 text-base">The <code class="px-1 py-0.5 font-mono text-red-600 bg-gray-200 rounded">data-mz-form-style</code> attribute is set to "default" for now. In future releases, we may provide additional styling options or templates for forms. If you remove this attribute, you can apply custom styles to the form.</p>
     </div>
 
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Form Widget Demo (Default Style)</h2>
       <p class="mb-4 text-base">Here's a live example of an embedded form using the default style:</p>
-      <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4">
+      <div class="overflow-x-auto p-4 mb-4 bg-gray-800 rounded-lg">
         <pre class="text-sm text-gray-300"><code><span class="text-pink-400">&lt;div</span> <span class="text-blue-300">class</span>=<span class="text-orange-300">"mzcapi-form"</span> 
      <span class="text-blue-300">data-mz-account</span>=<span class="text-orange-300">"{{ formConfig.account_uuid }}"</span> 
      <span class="text-blue-300">data-mz-form</span>=<span class="text-orange-300">"{{ formConfig.form_uuid }}"</span>
@@ -58,12 +58,12 @@
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Customizing Form Styles</h2>
       <p class="mb-4 text-base">For developers who want more control over the form's appearance, you have two options:</p>
-      <ul class="list-disc list-inside mb-4 text-base">
-        <li>Use the default style by adding <code class="bg-gray-200 px-1 py-0.5 rounded text-red-600 font-mono">data-mz-form-style="default"</code> to your form div.</li>
+      <ul class="mb-4 text-base list-disc list-inside">
+        <li>Use the default style by adding <code class="px-1 py-0.5 font-mono text-red-600 bg-gray-200 rounded">data-mz-form-style="default"</code> to your form div.</li>
         <li>Create a custom style by targeting the form's classes or ID in your CSS.</li>
       </ul>
       <p class="mb-4 text-base">Here's an example of custom CSS you can use as a starting point:</p>
-      <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto">
+      <div class="overflow-x-auto p-4 bg-gray-800 rounded-lg">
         <pre class="text-sm text-gray-300"><code><span class="text-pink-400">.mzcapi-form</span> {
   <span class="text-blue-300">font-family</span>: <span class="text-orange-300">'Arial', sans-serif</span>;
   <span class="text-blue-300">max-width</span>: <span class="text-purple-300">500px</span>;
@@ -125,7 +125,7 @@
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Form Widget Demo (Custom Styling)</h2>
       <p class="mb-4 text-base">Here's how to embed a form with custom styling:</p>
-      <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4">
+      <div class="overflow-x-auto p-4 mb-4 bg-gray-800 rounded-lg">
         <pre class="text-sm text-gray-300"><code><span class="text-pink-400">&lt;div</span> <span class="text-blue-300">class</span>=<span class="text-orange-300">"mzcapi-form custom-styled-form"</span> 
      <span class="text-blue-300">data-mz-account</span>=<span class="text-orange-300">"{{ formConfig.account_uuid }}"</span> 
      <span class="text-blue-300">data-mz-form</span>=<span class="text-orange-300">"{{ formConfig.form_uuid }}"</span><span class="text-pink-400">&gt;&lt;/div&gt;</span></code></pre>
@@ -139,7 +139,7 @@
     <div class="mb-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Advanced: Form Submission Handling</h2>
       <p class="mb-4 text-base">For developers who need more control, you can add custom behavior using JavaScript. Here's how to listen for form submissions:</p>
-      <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto">
+      <div class="overflow-x-auto p-4 bg-gray-800 rounded-lg">
         <pre class="text-sm text-gray-300"><code><span class="text-pink-400">document</span>.<span class="text-blue-300">addEventListener</span>(<span class="text-orange-300">'mzcapi:form:submitted'</span>, <span class="text-yellow-300">function</span>(event) {
   <span class="text-purple-300">console</span>.<span class="text-blue-300">log</span>(<span class="text-orange-300">'Form submitted:'</span>, event.<span class="text-blue-300">detail</span>);
   <span class="text-green-300">// Add your custom logic here</span>
@@ -149,7 +149,7 @@
 
     <div class="mt-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Best Practices for Developers</h2>
-      <ul class="list-disc list-inside text-base">
+      <ul class="text-base list-disc list-inside">
         <li class="mb-2">Keep forms short and focused to improve completion rates and data quality.</li>
         <li class="mb-2">Use clear and concise labels for form fields to enhance user understanding.</li>
         <li class="mb-2">Implement client-side form validation for immediate user feedback and data accuracy.</li>
@@ -157,8 +157,6 @@
         <li>Always provide clear feedback after form submission to acknowledge user interaction and encourage future engagement.</li>
       </ul>
     </div>
-
-
 
     <div class="mt-8">
       <h2 class="mb-4 text-2xl font-semibold text-secondary">Conclusion</h2>
