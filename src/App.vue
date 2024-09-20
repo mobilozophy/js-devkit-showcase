@@ -9,7 +9,7 @@
               <img class="hidden h-8 w-auto lg:block" src="@/assets/images/mobilozophy-logo.svg" alt="Mobilozophy" />
             </div>
             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</router-link>
+              <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[item.current ? 'border-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</router-link>
               
               <!-- Features Dropdown -->
               <div class="relative inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" @mouseenter="showFeaturesDropdown = true" @mouseleave="showFeaturesDropdown = false">
@@ -45,7 +45,7 @@
             </a>
             <div class="-mr-2 flex items-center sm:hidden">
               <!-- Mobile menu button -->
-              <DisclosureButton class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <DisclosureButton class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                 <span class="absolute -inset-0.5" />
                 <span class="sr-only">Open main menu</span>
                 <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
@@ -58,7 +58,7 @@
 
       <DisclosurePanel class="sm:hidden">
         <div class="space-y-1 pb-3 pt-2">
-          <DisclosureButton v-for="item in navigation" :key="item.name" as="router-link" :to="item.href" :class="[item.current ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <DisclosureButton v-for="item in navigation" :key="item.name" as="router-link" :to="item.href" :class="[item.current ? 'border-primary bg-primary-light text-primary' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
           <DisclosureButton as="div" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
             <span class="flex items-center justify-between">
               Use Cases
@@ -72,7 +72,7 @@
       </DisclosurePanel>
     </Disclosure>
 
-    <div class="py-10">
+    <div class="py-1">
       <main>
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <slot name="before-content"></slot>
@@ -82,9 +82,9 @@
       </main>
     </div>
 
-    <footer class="mt-16 text-white bg-gray-800 fixed bottom-0 w-full">
-      <div class="container px-4 py-8 mx-auto">
-        <p class="text-center">&copy; {{ currentYear }} Mobilozophy, LLC. All rights reserved.</p>
+    <footer class="mt-16 text-white bg-secondary fixed bottom-0 w-full">
+      <div class="container px-4 py-4 mx-auto">
+        <p class="text-center text-sm">&copy; {{ new Date().getFullYear() }} Mobilozophy, LLC. All rights reserved.</p>
       </div>
     </footer>
 
@@ -96,11 +96,11 @@
           <form @submit.prevent="saveSettings">
             <div class="mb-4">
               <label for="domain" class="block text-sm font-medium text-gray-700">Domain</label>
-              <input v-model="mzcapiConfig.domain" type="text" id="domain" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+              <input v-model="mzcapiConfig.domain" type="text" id="domain" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-primary focus:ring-primary sm:text-sm px-3 py-2" />
             </div>
             <div class="mb-4">
               <label for="api_url" class="block text-sm font-medium text-gray-700">API URL</label>
-              <input v-model="mzcapiConfig.api_url" type="text" id="api_url" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+              <input v-model="mzcapiConfig.api_url" type="text" id="api_url" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-primary focus:ring-primary sm:text-sm px-3 py-2" />
             </div>
             <div class="mb-4">
               <label for="verboseLogging" class="block text-sm font-medium text-gray-700">Verbose Logging</label>
@@ -108,19 +108,19 @@
             </div>
             <div class="mb-4">
               <label for="account_uuid" class="block text-sm font-medium text-gray-700">Account UUID</label>
-              <input v-model="formConfig.account_uuid" type="text" id="account_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+              <input v-model="formConfig.account_uuid" type="text" id="account_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-primary focus:ring-primary sm:text-sm px-3 py-2" />
             </div>
             <div class="mb-4">
               <label for="form_uuid" class="block text-sm font-medium text-gray-700">Form UUID</label>
-              <input v-model="formConfig.form_uuid" type="text" id="form_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+              <input v-model="formConfig.form_uuid" type="text" id="form_uuid" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-primary focus:ring-primary sm:text-sm px-3 py-2" />
             </div>
             <div class="mb-4">
               <label for="form_style" class="block text-sm font-medium text-gray-700">Form Style</label>
-              <input v-model="formConfig.form_style" type="text" id="form_style" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2" />
+              <input v-model="formConfig.form_style" type="text" id="form_style" class="mt-1 block w-full border-gray-400 rounded-md shadow-sm focus:border-primary focus:ring-primary sm:text-sm px-3 py-2" />
             </div>
             <div class="flex justify-end">
-              <button type="button" @click="closeModal" class="mr-2 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
-              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              <button type="button" @click="closeModal" class="mr-2 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Cancel</button>
+              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Save</button>
             </div>
           </form>
         </div>

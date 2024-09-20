@@ -1,48 +1,80 @@
 <template>
-  <div>
-    <section class="mb-16">
-      <h1 class="text-4xl font-bold mb-4">Welcome to Mobilozophy JS Demos</h1>
-      <p class="text-gray-700 mb-8">
-        At Mobilozophy, we believe in empowering businesses to connect with their customers in meaningful ways. Our mission is to provide innovative mobile solutions that drive growth and enhance customer experiences. We do this by offering ready-to-use embeddable JavaScript solutions that are easy to integrate and highly customizable.
-      </p>
-      <p class="text-gray-700 mb-8">
-        Our platform showcases a variety of use cases and demos tailored for different verticals, demonstrating the flexibility and power of our technology. Explore our demos to see how Mobilozophy can transform your business operations and create lasting customer relationships.
-      </p>
-      <h2 class="mb-6 text-2xl font-semibold">General Demos</h2>
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <router-link to="/use-cases/hospitality" class="block p-6 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
-          <h3 class="mb-2 text-xl font-bold">Hotel Booking Demo</h3>
-          <p class="text-gray-600">Showcase of a luxury hotel booking system integration.</p>
-        </router-link>
-        <a href="#" class="block p-6 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
-          <h3 class="mb-2 text-xl font-bold">E-Commerce Demo</h3>
-          <p class="text-gray-600">Showcase of an art store e-commerce integration.</p>
-        </a>
+  <div class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-5xl font-bold mb-6">Empower Your Customer Engagement with Mobilozophy</h1>
+          <p class="text-xl mb-8">Seamlessly integrate powerful marketing tools into your website with our JavaScript library. Boost conversions, enhance user experience, and drive growth.</p>
+          <a href="#features" class="bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-light transition duration-300">Explore Features</a>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2 class="mb-6 text-2xl font-semibold">Customer Specific Demos</h2>
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <a href="#" class="block p-6 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
-          <h3 class="mb-2 text-xl font-bold">Regency Hotel Management</h3>
-          <p class="text-gray-600">Showcase of dining options for Regency Hotel Management.</p>
-        </a>
+    <!-- Key Benefits Section -->
+    <section class="py-16" id="features">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-secondary">Why Choose Mobilozophy?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-primary">
+            <h3 class="text-xl font-semibold mb-4 text-primary">Easy Integration</h3>
+            <p class="text-gray-600">Add our powerful tools to your site with just a few lines of code. No complex setup required.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
+            <h3 class="text-xl font-semibold mb-4 text-secondary">Comprehensive Suite</h3>
+            <p class="text-gray-600">Access forms, SMS opt-in, loyalty programs, coupons, and analytics all through one integration.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-accent">
+            <h3 class="text-xl font-semibold mb-4 text-base">Data-Driven Insights</h3>
+            <p class="text-gray-600">Leverage our CDP to gain deep insights into customer behavior and preferences.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="mt-16">
-      <h2 class="mb-6 text-2xl font-semibold">Sample Code</h2>
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <a href="#" class="block p-6 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
-          <h3 class="mb-2 text-xl font-bold">Basic Integration</h3>
-          <p class="text-gray-600">Simple example of integrating Mobilozophy JS into a webpage.</p>
-        </a>
-        <a href="#" class="block p-6 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
-          <h3 class="mb-2 text-xl font-bold">Advanced Features</h3>
-          <p class="text-gray-600">Showcase of advanced Mobilozophy JS features and customizations.</p>
-        </a>
+    <!-- Features Showcase -->
+    <section class="bg-gray-100 py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-secondary">Powerful Features at Your Fingertips</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div v-for="feature in features" :key="feature.name" class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4 text-primary">{{ feature.name }}</h3>
+            <p class="mb-4 text-gray-600">{{ feature.description }}</p>
+            <router-link :to="feature.link" class="text-secondary font-semibold hover:text-base">Learn More</router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-16 bg-secondary text-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+        <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md text-gray-800">
+          <p class="text-lg italic mb-4">"Mobilozophy's JavaScript integration has revolutionized our customer engagement strategy. The ease of implementation and powerful features have significantly boosted our conversion rates."</p>
+          <p class="font-semibold text-primary">- Jane Doe, CEO of TechCorp</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-primary text-white py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Customer Engagement?</h2>
+        <p class="text-xl mb-8">Get started with Mobilozophy today and see the difference for yourself.</p>
+        <router-link to="/getting-started" class="bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-light transition duration-300">Get Started Now</router-link>
       </div>
     </section>
   </div>
 </template>
+
+<script setup>
+const features = [
+  { name: 'Dynamic Forms', description: 'Create and manage customizable forms for lead capture and surveys.', link: '/features/forms' },
+  { name: 'SMS Opt-In', description: 'Grow your SMS marketing list with easy-to-implement opt-in functionality.', link: '/features/sms-opt-in' },
+  { name: 'Loyalty Programs', description: 'Reward your customers and drive repeat business with built-in loyalty features.', link: '/features/loyalty' },
+  { name: 'Digital Coupons', description: 'Boost sales with targeted digital coupon campaigns.', link: '/features/coupons' },
+  { name: 'Advanced Analytics', description: 'Gain valuable insights into customer behavior and campaign performance.', link: '/features/analytics' },
+  { name: 'Event Tracking', description: 'Monitor and analyze key user interactions on your website.', link: '/features/events' },
+]
+</script>
