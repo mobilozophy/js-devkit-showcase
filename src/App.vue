@@ -251,7 +251,7 @@ const initializeMobilozophy = () => {
   console.log('%c[Parent Page] mzcapiConfig set:', 'color: #4CAF50; font-weight: bold;', window.mzcapiConfig);
 
   const script = document.createElement('script')
-  script.src = 'https://secure-dev.mzcapi.com/dev-js-embed/dist/embed.js'
+  script.src = 'https://js-dev.mzcapi.com/embed.js'
   script.onload = () => console.log('%c[Parent Page] mzCONNECT script loaded successfully', 'color: #4CAF50; font-weight: bold;');
   script.onerror = (error) => console.error('%c[Parent Page] Error loading mzCONNECT script:', 'color: #F44336; font-weight: bold;', error);
   document.head.appendChild(script)
